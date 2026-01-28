@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.env
+
+# VS Code
+.vscode/
+
+# MediaPipe models
+models/
+
+# Game logs/save data
+*.log
