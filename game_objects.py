@@ -4,8 +4,20 @@ Game objects: Asteroids, Particles, and Finger Cursor.
 import random
 import pygame
 import math
+import os
 import config
 from utils import distance
+
+# Cache for asteroid image
+_asteroid_image_cache = None
+
+def get_asteroid_image():
+    """Load and cache the asteroid image."""
+    global _asteroid_image_cache
+    if _asteroid_image_cache is None:
+        image_path = os.path.join(os.path.dirname(__file__), 'aestroid.png')
+        _asteroid_image_cache = pygame.image.load(image_path).convert_alpha()
+    return _asteroid_image_cache
 
 
 class Asteroid:
@@ -26,6 +38,11 @@ class Asteroid:
         self.speed = speed
         self.color = config.ASTEROID_COLOR
         self.alive = True
+        
+        # Load and scale the asteroid image based on radius
+        original_image = get_asteroid_image()
+        size = radius * 2  # Diameter
+        self.image = pygame.transform.smoothscale(original_image, (size, size))
     
     def update(self):
         """Move asteroid downward."""
@@ -38,9 +55,9 @@ class Asteroid:
             surface: Pygame surface to draw on
         """
         if self.alive:
-            pygame.draw.circle(surface, self.color, (int(self.x), int(self.y)), self.radius)
-            # Add a darker outline for better visibility
-            pygame.draw.circle(surface, (100, 25, 25), (int(self.x), int(self.y)), self.radius, 2)
+            # Draw the asteroid image centered on the position
+            image_rect = self.image.get_rect(center=(int(self.x), int(self.y)))
+            surface.blit(self.image, image_rect)
     
     def check_collision(self, point):
         """Check if a point collides with this asteroid.

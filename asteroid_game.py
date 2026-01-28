@@ -5,6 +5,7 @@ Main game loop and integration of all components.
 import pygame
 import cv2
 import sys
+import os
 import config
 from object_tracker import ObjectTracker  # Swapped from hand_tracker
 from coordinate_mapper import CoordinateMapper
@@ -34,6 +35,11 @@ class AsteroidGame:
             self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         
         pygame.display.set_caption("Asteroid Destroyer (Object Tracking Mode)")
+        
+        # Load background image
+        bg_path = os.path.join(os.path.dirname(__file__), 'background.png')
+        self.background_image = pygame.image.load(bg_path).convert()
+        self.background_image = pygame.transform.scale(self.background_image, (self.screen_width, self.screen_height))
         
         # Initialize components
         self.object_tracker = ObjectTracker()
@@ -140,8 +146,8 @@ class AsteroidGame:
     
     def render(self):
         """Render the game."""
-        # Clear screen
-        self.screen.fill(config.BG_COLOR)
+        # Draw background image
+        self.screen.blit(self.background_image, (0, 0))
         
         if self.game_state == "menu":
             self.ui_renderer.draw_menu()
