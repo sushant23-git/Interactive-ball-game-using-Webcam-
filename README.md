@@ -9,6 +9,10 @@ An interactive game designed for **Projector Walls**. Use a **White Object** (li
 - **Debug Mode**: Press **'D'** to see exactly what the camera sees (Picture-in-Picture).
 - **No Special Hardware**: Just a webcam and a white object.
 
+
+https://github.com/user-attachments/assets/4074c287-9943-4957-b3a8-88d5fab8f98e
+
+
 ## 🚀 How to Play
 
 1. **Setup**:
