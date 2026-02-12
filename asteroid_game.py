@@ -34,7 +34,7 @@ class AsteroidGame:
         else:
             self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         
-        pygame.display.set_caption("Asteroid Destroyer (Object Tracking Mode)")
+        pygame.display.set_caption("Asteroid Destroyer (Ball Tracking Mode)")
         
         # Load background image
         bg_path = os.path.join(os.path.dirname(__file__), 'background.png')
@@ -211,10 +211,11 @@ class AsteroidGame:
     
     def run(self):
         """Main game loop."""
-        print("Asteroid Destroyer Game Starting (Object Tracking)...")
+        print("Asteroid Destroyer Game Starting (ML Ball Detection)...")
         print("Position your webcam to see the PROJECTED SCREEN.")
-        print("Use a WHITE OBJECT to aim.")
+        print("Use a BALL (sports ball - tennis, soccer, basketball, etc.) to aim.")
         print("Press 'D' to toggle debug view to see what the camera sees.")
+        print("Using MobileNet-SSD for ball detection")
         
         while self.running:
             # Handle events
